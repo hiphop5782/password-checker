@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>password pattern checker</title>
+    <link rel="stylesheet" type="text/css" href="../dist/password-checker.css">
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .container {
+            width:400px;
+            margin:auto;
+        }
+        .container > input[name=password],
+        .container > .next-btn  {
+            width:100%;
+            display: block;
+            font-size: 20px;
+            padding: 0.5em;
+            margin:0.5em 0;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="../dist/password-checker.js"></script>
+    <script>
+        $(function(){
+            $("input[name=password]").passwordChecker({
+                display:{
+                    target:"input[name=password] + .result",
+                    showLevel:true,
+                }
+            });
+
+            $("input[name=password").on("input", function(){
+                const result = $(this).passwordChecker("judge");
+                $(".next-btn").prop("disabled", !result);
+            });
+            
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Password checker demo</h1>
+        <input type="password" name="password">
+        <div class="result"></div>
+        <button class="next-btn" disabled>다음</button>
+    </div>
+</body>
+</html>
