@@ -119,3 +119,36 @@ $(selector).passwordChecker({options});
 }
 ```
 
+## 적용
+
+다음과 같이 입력창을 생성한다.
+```html
+<input type="password" name="password">
+```
+
+결과를 표시하고 싶다면 다음과 같이 결과 영역을 생성해야 한다.
+```html
+<div class="result"></div>
+```
+
+jQuery를 이용하여 비밀번호 검사 도구를 생성한다.
+```javascript
+$("input[type=password]").passwordChecker();
+```
+
+결과를 표시하고 싶은 영역을 지정하며 생성할 수 있다.
+```javascript
+$("input[name=password]").passwordChecker({
+    display:{
+        target:".result"
+    }
+});
+```
+
+모든 검사 조건을 만족하는지 확인하기 위해서는 다음과 같은 코드를 사용한다.
+
+```javascript
+$("input[name=password]").passwordChecker("judge");
+```
+
+판정 결과가 `boolean` 형태로 반환되며, 만약 여러 개를 선택한 경우 모든 입력창의 검사 통과 여부가 반환된다.
